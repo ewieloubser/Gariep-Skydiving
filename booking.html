@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tandem Skydiving Booking — Gariep Fly-In 2026 | Big Water Airport</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1F44;--navy-90:#0d2650;--gold:#C29A2E;--gold-bright:#d8ac3d;
+    --paper:#f6f4ef;--ink:#12161f;--muted:#5f6b7d;--line:rgba(10,31,68,.14);
+    --ok:#2e7d5b;--warn:#b3521f;--sold:#9aa2ae;--shadow:0 18px 44px -22px rgba(10,31,68,.55);
+    --display:"Barlow Condensed",-apple-system,"Segoe UI",Roboto,sans-serif;
+    --body:"Barlow",Calibri,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.disp{font-family:var(--display);letter-spacing:.01em;line-height:1.02}
+
+  .topbar{background:var(--navy);color:#fff;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:2px solid var(--gold)}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .mark{width:38px;height:38px;border-radius:50%;border:2px solid var(--gold);display:grid;place-items:center;flex:0 0 auto;font-family:var(--display);font-weight:700;color:var(--gold);font-size:19px}
+  .brand .name{font-family:var(--display);font-weight:600;font-size:20px;line-height:1;text-transform:uppercase;letter-spacing:.06em}
+  .brand .sub{font-size:11px;letter-spacing:.22em;color:rgba(255,255,255,.62);text-transform:uppercase}
+  .freq{font-family:var(--display);font-size:13px;letter-spacing:.12em;color:rgba(255,255,255,.7);text-transform:uppercase}
+  .freq b{color:var(--gold);font-weight:600}
+
+  .hero{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 80% -10%,rgba(194,154,46,.22),transparent 55%),linear-gradient(160deg,var(--navy) 0%,#0b234d 55%,#0a1c3d 100%);color:#fff;padding:54px 22px 60px}
+  .hero .wrap{max-width:1100px;margin:0 auto;position:relative;z-index:2}
+  .eyebrow{font-family:var(--display);text-transform:uppercase;letter-spacing:.32em;font-size:13px;color:var(--gold-bright);font-weight:600;margin-bottom:14px}
+  .hero h1{font-size:clamp(40px,7vw,74px);font-weight:700;text-transform:uppercase}
+  .hero h1 .thin{color:var(--gold);display:block;font-weight:500}
+  .hero p.lead{max-width:52ch;margin-top:16px;font-size:17px;color:rgba(255,255,255,.82)}
+  .facts{display:flex;flex-wrap:wrap;gap:26px;margin-top:30px}
+  .fact{border-left:2px solid var(--gold);padding-left:14px}
+  .fact .k{font-family:var(--display);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+  .fact .v{font-family:var(--display);font-size:26px;font-weight:600;color:#fff;line-height:1.1}
+  .fact .v small{font-size:14px;color:var(--gold-bright);font-weight:500}
+  .hero .lines{position:absolute;inset:0;z-index:1;opacity:.13;background:repeating-linear-gradient(to bottom,transparent 0 58px,rgba(255,255,255,.5) 58px 59px)}
+
+  .banner{max-width:1100px;margin:-30px auto 0;position:relative;z-index:3;padding:0 22px}
+  .banner .b{background:#fff8ea;border:1px solid rgba(194,154,46,.5);border-radius:11px;padding:10px 16px;font-size:13px;color:var(--navy);display:flex;gap:9px;align-items:center;box-shadow:var(--shadow)}
+  .banner .b b{color:var(--warn)}
+  .banner .b.hide{display:none}
+
+  .stage{max-width:1100px;margin:0 auto;padding:34px 22px 10px;display:grid;grid-template-columns:1fr 340px;gap:26px;align-items:start}
+  @media(max-width:880px){.stage{grid-template-columns:1fr}}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+  .panel .head{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
+  .panel .head .step{width:26px;height:26px;border-radius:50%;background:var(--navy);color:var(--gold);font-family:var(--display);font-weight:700;display:grid;place-items:center;font-size:15px;flex:0 0 auto}
+  .panel .head h2{font-size:22px;text-transform:uppercase;font-weight:600;letter-spacing:.04em}
+  .panel .head .hint{margin-left:auto;font-size:12.5px;color:var(--muted)}
+  .panel .body{padding:20px}
+
+  .days{display:flex;gap:10px;flex-wrap:wrap}
+  .day{flex:1 1 150px;text-align:left;cursor:pointer;background:#fff;border:1.5px solid var(--line);border-radius:11px;padding:13px 16px;transition:.15s;font-family:var(--body)}
+  .day:hover{border-color:var(--gold)}
+  .day.active{border-color:var(--navy);background:var(--navy);color:#fff;box-shadow:var(--shadow)}
+  .day .dow{font-family:var(--display);font-size:13px;letter-spacing:.18em;text-transform:uppercase;opacity:.72}
+  .day .date{font-family:var(--display);font-size:26px;font-weight:600;line-height:1.05}
+  .day .avail{font-size:12.5px;margin-top:3px}
+  .day.active .avail{color:var(--gold-bright)}
+  .day .avail.none{color:var(--sold)}
+
+  .board{margin-top:20px;border-top:1px solid var(--line)}
+  .board-head{display:grid;grid-template-columns:1.3fr 1fr 96px 44px;gap:10px;padding:11px 12px;font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:11.5px;color:var(--muted)}
+  .slot{display:grid;grid-template-columns:1.3fr 1fr 96px 44px;gap:10px;align-items:center;width:100%;text-align:left;cursor:pointer;background:#fff;border:none;border-top:1px solid var(--line);padding:15px 12px;font-family:var(--body);transition:background .12s}
+  .slot:hover:not(:disabled){background:#fbf7ec}
+  .slot:disabled{cursor:not-allowed;opacity:.55}
+  .slot .to{font-family:var(--display);font-size:26px;font-weight:600;color:var(--navy);line-height:1;letter-spacing:.01em;font-variant-numeric:tabular-nums}
+  .slot .to span{font-size:12px;color:var(--muted);display:block;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+  .slot .arr{font-family:var(--display);font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
+  .slot .arr span{display:block;font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+  .seats{font-family:var(--display);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+  .seats.ok{color:var(--ok)}.seats.low{color:var(--warn)}.seats.sold{color:var(--sold)}
+  .pick{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);justify-self:center;display:grid;place-items:center}
+  .slot.sel{background:var(--navy)}
+  .slot.sel .to,.slot.sel .arr{color:#fff}
+  .slot.sel .to span,.slot.sel .arr span{color:rgba(255,255,255,.7)}
+  .slot.sel .seats.ok,.slot.sel .seats.low{color:var(--gold-bright)}
+  .slot.sel .pick{border-color:var(--gold);background:var(--gold)}
+  .slot.sel .pick::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--navy)}
+
+  .locked{opacity:.45;pointer-events:none;filter:grayscale(.3)}
+  .qty{display:flex;gap:10px;margin:2px 0 4px}
+  .qbtn{flex:1;cursor:pointer;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:14px;text-align:center;font-family:var(--display);transition:.15s}
+  .qbtn:hover{border-color:var(--gold)}
+  .qbtn.active{border-color:var(--navy);background:var(--navy);color:#fff}
+  .qbtn .n{font-size:26px;font-weight:600;line-height:1}
+  .qbtn .l{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+
+  .pax{border:1px solid var(--line);border-radius:11px;padding:15px;margin-top:14px;background:#fcfbf8}
+  .pax>.tag{font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;font-size:13px;color:var(--navy);font-weight:600;margin-bottom:11px;display:flex;align-items:center;gap:8px}
+  .pax>.tag .dot{width:20px;height:20px;border-radius:50%;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-size:12px;font-weight:700}
+  label.field{display:block;margin-bottom:11px}
+  label.field .lab{display:block;font-size:12.5px;font-weight:600;color:var(--navy);margin-bottom:5px;letter-spacing:.01em}
+  input[type=text],input[type=email],input[type=tel],select{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:9px;font-family:var(--body);font-size:15px;color:var(--ink);background:#fff;transition:.15s}
+  input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(194,154,46,.16)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:520px){.two{grid-template-columns:1fr}}
+  .check{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink);margin-top:9px;cursor:pointer}
+  .check input{margin-top:2px;width:17px;height:17px;accent-color:var(--gold);flex:0 0 auto}
+  .guardian{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);display:none}
+  .guardian.show{display:block}
+
+  .terms{background:#fff8ea;border:1px solid rgba(194,154,46,.4);border-radius:11px;padding:15px 17px;margin-top:16px}
+  .terms h3{font-size:15px;text-transform:uppercase;letter-spacing:.1em;color:var(--navy);margin-bottom:9px;font-weight:600}
+  .terms ul{list-style:none;display:grid;gap:7px}
+  .terms li{display:flex;gap:9px;font-size:13.6px;align-items:flex-start}
+  .terms li::before{content:"▸";color:var(--gold);font-weight:700;line-height:1.4}
+  .terms .ack{margin-top:12px;padding-top:12px;border-top:1px solid rgba(194,154,46,.35)}
+
+  .rail{position:sticky;top:16px}
+  .rail .head{background:var(--navy);color:#fff;border-bottom:2px solid var(--gold)}
+  .rail .head h2{color:#fff}
+  .rail .body{padding:18px 20px}
+  .sumrow{display:flex;justify-content:space-between;gap:12px;padding:8px 0;font-size:14px;border-bottom:1px dashed var(--line)}
+  .sumrow .k{color:var(--muted)}.sumrow .v{font-weight:600;text-align:right}
+  .sumrow.empty{color:var(--muted);font-style:italic;justify-content:center;border:none;padding:14px 0}
+  .totals{margin-top:12px;padding-top:12px;border-top:2px solid var(--navy)}
+  .totals .line{display:flex;justify-content:space-between;font-size:14px;padding:4px 0;color:var(--muted)}
+  .totals .due{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px}
+  .totals .due .k{font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:15px;color:var(--navy);font-weight:600}
+  .totals .due .v{font-family:var(--display);font-size:34px;font-weight:700;color:var(--navy);line-height:1}
+  .paychoice{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:16px 0 4px}
+  .paychoice .opt{cursor:pointer;border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;text-align:center;transition:.15s}
+  .paychoice .opt:hover{border-color:var(--gold)}
+  .paychoice .opt.active{border-color:var(--navy);background:var(--navy);color:#fff}
+  .paychoice .opt .t{font-family:var(--display);font-size:15px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  .paychoice .opt .a{font-size:12.5px;opacity:.85;margin-top:2px}
+  .cta{width:100%;margin-top:14px;cursor:pointer;border:none;border-radius:11px;background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:var(--navy);font-family:var(--display);font-weight:700;font-size:19px;text-transform:uppercase;letter-spacing:.06em;padding:16px;transition:.15s;box-shadow:0 10px 22px -10px rgba(194,154,46,.8)}
+  .cta:hover:not(:disabled){transform:translateY(-1px);filter:brightness(1.04)}
+  .cta:disabled{background:#dfe2e7;color:#9aa2ae;box-shadow:none;cursor:not-allowed}
+  .secure{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:10px;font-size:12px;color:var(--muted)}
+  .secure svg{width:13px;height:13px;fill:var(--muted)}
+  .norefund{margin-top:12px;font-size:12px;color:var(--warn);text-align:center;line-height:1.4}
+  .errbox{display:none;background:#fdecec;border:1px solid #e6b3b3;color:#8f2f2f;border-radius:9px;padding:10px 12px;font-size:13px;margin-top:12px}
+  .errbox.show{display:block}
+
+  .termstrip{max-width:1100px;margin:26px auto 0;padding:0 22px}
+  .termstrip .inner{background:var(--navy);color:#fff;border-radius:14px;padding:26px 28px}
+  .termstrip h2{color:var(--gold);text-transform:uppercase;font-size:22px;letter-spacing:.05em;margin-bottom:14px}
+  .tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+  .tgrid .item{border-top:2px solid var(--gold);padding-top:10px}
+  .tgrid .item h4{font-family:var(--display);font-size:15px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}
+  .tgrid .item p{font-size:13.4px;color:rgba(255,255,255,.8)}
+
+  footer{max-width:1100px;margin:30px auto 0;padding:22px;border-top:2px solid var(--gold)}
+  footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;font-size:12.5px;color:var(--muted)}
+  footer .row b{color:var(--navy)}
+  .footnote{padding:0 22px 40px;max-width:1100px;margin:0 auto;font-size:11.5px;color:#9aa2ae;text-align:center}
+
+  .overlay{position:fixed;inset:0;background:rgba(10,31,68,.62);display:none;place-items:center;z-index:50;padding:20px}
+  .overlay.show{display:grid}
+  .modal{background:#fff;max-width:460px;width:100%;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
+  .modal .top{background:var(--navy);color:#fff;padding:22px;border-bottom:2px solid var(--gold);text-align:center}
+  .modal .top .ring{width:56px;height:56px;border-radius:50%;border:3px solid var(--gold);display:grid;place-items:center;margin:0 auto 10px;color:var(--gold);font-size:26px}
+  .modal .top h3{font-size:24px;text-transform:uppercase;letter-spacing:.04em}
+  .modal .mb{padding:22px}
+  .modal .ref{background:var(--paper);border:1px dashed var(--gold);border-radius:9px;padding:12px;text-align:center;margin:4px 0 16px}
+  .modal .ref .l{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .modal .ref .r{font-family:var(--display);font-size:26px;font-weight:700;color:var(--navy);letter-spacing:.08em}
+  .modal p{font-size:13.6px;color:var(--ink);margin-bottom:12px}
+  .modal .close{width:100%;padding:13px;border:none;border-radius:10px;background:var(--navy);color:#fff;font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;letter-spacing:.05em;cursor:pointer}
+  .modal .close:hover{background:var(--navy-90)}
+  .spin{width:34px;height:34px;border:3px solid rgba(255,255,255,.3);border-top-color:var(--gold);border-radius:50%;margin:0 auto 10px;animation:sp 1s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="mark">BW</div>
+    <div><div class="name">Big Water Aero</div><div class="sub">Big Water Airport · FAGA</div></div>
+  </div>
+  <div class="freq">Fly-In Radio <b>124.8</b> MHz</div>
+</div>
+
+<section class="hero">
+  <div class="lines"></div>
+  <div class="wrap">
+    <div class="eyebrow">Gariep Fly-In 2026 · 24–27 September</div>
+    <h1>Tandem Skydive<span class="thin">over the Gariep Dam</span></h1>
+    <p class="lead">Freefall above the biggest dam in the country, then float back to the airfield with the Karoo laid out beneath you. Strapped to a qualified tandem master — no experience needed.</p>
+    <div class="facts">
+      <div class="fact"><div class="k">Per tandem jump</div><div class="v">R4&nbsp;890</div></div>
+      <div class="fact"><div class="k">Jump days</div><div class="v">Thu 24 – Sun 27<small> Sep</small></div></div>
+      <div class="fact"><div class="k">Arrive before your window</div><div class="v">40<small> min</small></div></div>
+      <div class="fact"><div class="k">Weight limit</div><div class="v">100<small> kg</small></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="banner"><div class="b hide" id="previewBanner">⚑ <span><b>Preview mode.</b>&nbsp;Live payment and availability are off until the backend is connected. Set <code>API_BASE</code> in the script to go live.</span></div></div>
+
+<div class="stage">
+  <div class="main">
+    <div class="panel">
+      <div class="head"><span class="step">1</span><h2>Pick your window</h2><span class="hint">Max 2 jumpers per window</span></div>
+      <div class="body">
+        <div class="days" id="days"></div>
+        <div class="board">
+          <div class="board-head"><div>Jump window</div><div>Arrive by</div><div>Seats</div><div></div></div>
+          <div id="slots"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="step2" style="margin-top:22px">
+      <div class="head"><span class="step">2</span><h2>Jumpers &amp; details</h2><span class="hint" id="step2hint">Select a window first</span></div>
+      <div class="body">
+        <div id="step2lock" class="locked">
+          <div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px">How many tandem jumps?</div>
+          <div class="qty">
+            <button class="qbtn active" data-qty="1"><div class="n">1</div><div class="l">Jumper</div></button>
+            <button class="qbtn" data-qty="2"><div class="n">2</div><div class="l">Jumpers</div></button>
+          </div>
+          <div id="paxlist"></div>
+          <div class="terms">
+            <h3>Before you book — please confirm</h3>
+            <ul>
+              <li>You must be <b>14 years or older</b> to do a tandem jump.</li>
+              <li>Jumpers under 18 (minors) need <b>written consent from a parent or guardian</b>.</li>
+              <li>Each jumper must weigh <b>100&nbsp;kg or less</b>.</li>
+              <li>Arrive at the airfield <b>at least 40 minutes before your window</b> — for check-in, the indemnity form, your briefing and kitting up for boarding.</li>
+            </ul>
+            <div class="ack">
+              <label class="check"><input type="checkbox" id="ackTerms">
+                <span>I confirm every jumper meets the age and weight requirements above, and I understand the 40-minute arrival rule and that payment is <b>non-refundable</b>.</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="step3" style="margin-top:22px">
+      <div class="head"><span class="step">3</span><h2>Booking contact</h2><span class="hint">For confirmation &amp; joining info</span></div>
+      <div class="body">
+        <div id="step3lock" class="locked">
+          <div class="two">
+            <label class="field"><span class="lab">Full name</span><input type="text" id="bkName" placeholder="Name and surname"></label>
+            <label class="field"><span class="lab">Mobile number</span><input type="tel" id="bkPhone" placeholder="e.g. 082 000 0000"></label>
+          </div>
+          <label class="field"><span class="lab">Email address</span><input type="email" id="bkEmail" placeholder="you@email.co.za"></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel rail" id="rail">
+    <div class="head"><h2>Your jump</h2></div>
+    <div class="body">
+      <div id="summary"><div class="sumrow empty">No window selected yet</div></div>
+      <div class="totals" id="totals" style="display:none">
+        <div class="line"><span id="ppLabel">Tandem jump × 1</span><span id="ppValue">R4 890</span></div>
+        <div class="paychoice">
+          <button class="opt active" data-pay="full"><div class="t">Pay full</div><div class="a" id="fullAmt">R4 890</div></button>
+          <button class="opt" data-pay="deposit"><div class="t">50% deposit</div><div class="a" id="depAmt">R2 445</div></button>
+        </div>
+        <div class="due"><span class="k">Pay now</span><span class="v" id="dueNow">R4 890</span></div>
+        <div class="line" id="balanceLine" style="display:none"><span>Balance before event</span><span id="balAmt">R0</span></div>
+      </div>
+      <div class="errbox" id="err"></div>
+      <button class="cta" id="pay" disabled>Pay with Yoco</button>
+      <div class="secure">
+        <svg viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm0 6a2.5 2.5 0 0 1 2.5 2.5c0 1-.6 1.9-1.5 2.3V15h-2v-3.2c-.9-.4-1.5-1.3-1.5-2.3A2.5 2.5 0 0 1 12 7z"/></svg>
+        Secure card payment · powered by Yoco
+      </div>
+      <div class="norefund">Deposits and payments are non-refundable. Your seat is held while you pay and confirmed once payment reflects.</div>
+    </div>
+  </div>
+</div>
+
+<div class="termstrip">
+  <div class="inner">
+    <h2>Good to know</h2>
+    <div class="tgrid">
+      <div class="item"><h4>Age &amp; consent</h4><p>Minimum age 14. Jumpers aged 14–17 must have a parent or guardian sign consent on the day. Bring ID.</p></div>
+      <div class="item"><h4>Weight limit</h4><p>Maximum 100 kg per jumper, for the safety of the tandem harness and canopy. Please be accurate.</p></div>
+      <div class="item"><h4>Arrive 40 min early</h4><p>Get to the skydiving desk at least 40 minutes before your window for check-in, indemnity, briefing and kit-up.</p></div>
+      <div class="item"><h4>Payment</h4><p>R4 890 per tandem jump. Pay in full or a 50% deposit now, balance before the event. All payments non-refundable.</p></div>
+      <div class="item"><h4>Weather</h4><p>Skydiving is weather-dependent. If jumps are grounded by conditions on the day, the operator will arrange an alternative window.</p></div>
+      <div class="item"><h4>Operated by</h4><p>Tandem jumps are run by an independent SACAA Part 105 approved parachuting operator at Big Water Airport (FAGA).</p></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="row">
+    <div><b>Big Water Aero (Pty) Ltd</b> · Reg No. 2024/080574/07</div>
+    <div>Big Water Airport (FAGA), R701 Bethulie Road, Gariep Dam, Free State 9922</div>
+    <div><b>Bookings:</b> manager@bigwater.aero</div>
+  </div>
+</footer>
+<div class="footnote">Gariep Fly-In 2026 · Tandem skydiving is a third-party operation. By booking you agree to the operator's indemnity and safety requirements completed on the day.</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="top"><div id="modalIcon" class="ring">✈</div><h3 id="modalTitle">Redirecting…</h3></div>
+    <div class="mb">
+      <div class="ref" id="refWrap"><div class="l">Your booking reference</div><div class="r" id="refCode">—</div></div>
+      <p id="modalDetail"></p>
+      <button class="close" id="closeModal">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================================
+   GARIEP FLY-IN 2026 — TANDEM SKYDIVE BOOKING (frontend)
+   ----------------------------------------------------------------------------
+   TO GO LIVE: set API_BASE to your deployed backend URL, e.g.
+       const API_BASE = "https://gariep-skydive.vercel.app/api";
+   When API_BASE is empty the page runs in PREVIEW mode: it shows the schedule
+   and validates everything but does NOT take payment or track shared seats.
+   Live mode fetches availability from the backend, holds seats server-side,
+   and redirects to a real Yoco checkout. See README.md.
+   ---------------------------------------------------------------------------- */
+  const API_BASE = "";            // <-- paste your backend /api URL to go live
+  const ARRIVAL_LEAD_MIN = 40;
+  const PRICE = 4890;             // R per tandem jump (display only; server is source of truth)
+  const DEPOSIT_PCT = 0.50;
+  const CAP_PER_WINDOW = 2;       // seats per window (one C206 load). Raise if operator flies 2 loads.
+  const POLL_MS = 25000;          // availability refresh interval in live mode
+
+  // Skydive windows per the confirmed Fly-In schedule (24–27 Sep 2026).
+  const CONFIG = { days:[
+    { id:"thu", dow:"Thursday", date:"24 Sep", iso:"2026-09-24",
+      windows:[{s:"10:00",e:"11:00"},{s:"14:00",e:"15:00"},{s:"17:00",e:"18:00"}] },
+    { id:"fri", dow:"Friday", date:"25 Sep", iso:"2026-09-25",
+      windows:[{s:"09:00",e:"10:00"},{s:"14:00",e:"15:00"},{s:"17:00",e:"18:00"}] },
+    { id:"sat", dow:"Saturday", date:"26 Sep", iso:"2026-09-26",
+      windows:[{s:"09:00",e:"10:00"},{s:"14:00",e:"15:00"},{s:"17:00",e:"18:00"}] },
+    { id:"sun", dow:"Sunday", date:"27 Sep", iso:"2026-09-27",
+      windows:[{s:"10:00",e:"11:00"},{s:"13:00",e:"14:00"},{s:"17:00",e:"18:00"}] }
+  ]};
+/* ==========================================================================*/
+
+  function minusMinutes(hhmm,mins){const[h,m]=hhmm.split(":").map(Number);let t=(h*60+m-mins+1440)%1440;return String(Math.floor(t/60)).padStart(2,"0")+":"+String(t%60).padStart(2,"0");}
+  // Build flat slot list. Stable id = day + start time (e.g. "thu-1000") — matches DB seed.
+  CONFIG.days.forEach(d=>d.slots=d.windows.map(w=>({
+    id:d.id+"-"+w.s.replace(":",""), s:w.s, e:w.e,
+    label:w.s+"–"+w.e, arriveBy:minusMinutes(w.s,ARRIVAL_LEAD_MIN),
+    cap:CAP_PER_WINDOW, booked:0
+  })));
+
+  const LIVE = !!API_BASE;
+  const state = { dayId:CONFIG.days[0].id, slotId:null, qty:1, pay:"full", pax:[{},{}] };
+  const money = n => "R"+n.toLocaleString("en-ZA").replace(/,/g," ");
+  const findDay = id => CONFIG.days.find(d=>d.id===id);
+  const findSlot = () => { for(const d of CONFIG.days){const s=d.slots.find(x=>x.id===state.slotId); if(s)return{d,s};} return null; };
+
+  document.getElementById("previewBanner").classList.toggle("hide", LIVE);
+
+  // -------- availability (live mode) --------
+  async function refreshAvailability(){
+    if(!LIVE) return;
+    try{
+      const r = await fetch(API_BASE+"/availability",{cache:"no-store"});
+      if(!r.ok) throw 0;
+      const map = await r.json(); // { "thu-1000": {capacity, booked}, ... }
+      CONFIG.days.forEach(d=>d.slots.forEach(s=>{
+        if(map[s.id]){ s.cap=map[s.id].capacity; s.booked=map[s.id].booked; }
+      }));
+      renderDays(); renderSlots();
+    }catch(e){ /* keep last known state */ }
+  }
+
+  function renderDays(){
+    const el=document.getElementById("days"); el.innerHTML="";
+    CONFIG.days.forEach(d=>{
+      const left=d.slots.reduce((a,s)=>a+Math.max(0,s.cap-s.booked),0);
+      const b=document.createElement("button");
+      b.className="day"+(d.id===state.dayId?" active":"");
+      b.innerHTML=`<div class="dow">${d.dow}</div><div class="date">${d.date}</div>
+        <div class="avail ${left?'':'none'}">${left?left+" seats available":"Fully booked"}</div>`;
+      b.onclick=()=>{state.dayId=d.id;state.slotId=null;renderDays();renderSlots();syncSteps();renderSummary();};
+      el.appendChild(b);
+    });
+  }
+
+  function renderSlots(){
+    const el=document.getElementById("slots"); el.innerHTML="";
+    findDay(state.dayId).slots.forEach(s=>{
+      const left=Math.max(0,s.cap-s.booked);
+      const b=document.createElement("button");
+      b.className="slot"+(s.id===state.slotId?" sel":"");
+      b.disabled=left<=0;
+      const cls=left<=0?"sold":(left===1?"low":"ok");
+      const txt=left<=0?"Full":left+" of "+s.cap;
+      b.innerHTML=`
+        <div class="to">${s.label}<span>Jump window</span></div>
+        <div class="arr">${s.arriveBy}<span>Arrive by</span></div>
+        <div class="seats ${cls}">${txt}</div>
+        <div class="pick"></div>`;
+      b.onclick=()=>{state.slotId=s.id; if(state.qty>left)setQty(left||1); renderSlots();syncSteps();renderSummary();};
+      el.appendChild(b);
+    });
+  }
+
+  function setQty(q){state.qty=q;document.querySelectorAll(".qbtn").forEach(x=>x.classList.toggle("active",+x.dataset.qty===q));renderPax();renderSummary();}
+  document.querySelectorAll(".qbtn").forEach(btn=>btn.onclick=()=>{
+    const q=+btn.dataset.qty, fs=findSlot();
+    if(fs && q>(fs.s.cap-fs.s.booked)){flashErr("Only "+(fs.s.cap-fs.s.booked)+" seat(s) left in this window.");return;}
+    setQty(q);
+  });
+
+  function renderPax(){
+    const wrap=document.getElementById("paxlist"); wrap.innerHTML="";
+    for(let i=0;i<state.qty;i++){
+      state.pax[i]=state.pax[i]||{}; const p=state.pax[i];
+      const div=document.createElement("div"); div.className="pax";
+      div.innerHTML=`
+        <div class="tag"><span class="dot">${i+1}</span> Jumper ${i+1}</div>
+        <label class="field"><span class="lab">Full name</span>
+          <input type="text" data-i="${i}" data-f="name" placeholder="Name and surname" value="${p.name||''}"></label>
+        <div class="two">
+          <label class="field"><span class="lab">Age on jump day</span>
+            <select data-i="${i}" data-f="age">
+              <option value="">Select…</option>
+              <option ${p.age==='adult'?'selected':''} value="adult">18 or older</option>
+              <option ${p.age==='minor'?'selected':''} value="minor">14–17 (minor)</option>
+              <option ${p.age==='under'?'selected':''} value="under">Under 14</option>
+            </select></label>
+          <label class="field"><span class="lab">&nbsp;</span>
+            <label class="check" style="margin-top:11px"><input type="checkbox" data-i="${i}" data-f="weight" ${p.weight?'checked':''}>
+            <span>Weighs <b>100 kg or less</b></span></label></label>
+        </div>
+        <div class="guardian ${p.age==='minor'?'show':''}" data-g="${i}">
+          <div class="two">
+            <label class="field"><span class="lab">Parent / guardian name</span>
+              <input type="text" data-i="${i}" data-f="gname" placeholder="Guardian full name" value="${p.gname||''}"></label>
+            <label class="field"><span class="lab">Guardian mobile</span>
+              <input type="tel" data-i="${i}" data-f="gphone" placeholder="082 000 0000" value="${p.gphone||''}"></label>
+          </div>
+          <label class="check"><input type="checkbox" data-i="${i}" data-f="gconsent" ${p.gconsent?'checked':''}>
+            <span>As parent/guardian I consent to this minor doing a tandem jump and will sign the indemnity on the day.</span></label>
+        </div>`;
+      wrap.appendChild(div);
+    }
+    wrap.querySelectorAll("input,select").forEach(inp=>inp.addEventListener("input",e=>{
+      const i=+e.target.dataset.i,f=e.target.dataset.f;
+      state.pax[i][f]=e.target.type==="checkbox"?e.target.checked:e.target.value;
+      if(f==="age"){wrap.querySelector(`[data-g="${i}"]`).classList.toggle("show",e.target.value==='minor');}
+      renderSummary();
+    }));
+  }
+
+  function syncSteps(){
+    const has=!!state.slotId;
+    document.getElementById("step2lock").classList.toggle("locked",!has);
+    document.getElementById("step3lock").classList.toggle("locked",!has);
+    document.getElementById("step2hint").textContent=has?"Max 2 jumpers per window":"Select a window first";
+    if(has && !document.getElementById("paxlist").children.length) renderPax();
+  }
+
+  document.querySelectorAll(".paychoice .opt").forEach(o=>o.onclick=()=>{state.pay=o.dataset.pay;document.querySelectorAll(".paychoice .opt").forEach(x=>x.classList.toggle("active",x===o));renderSummary();});
+
+  function amounts(){const full=PRICE*state.qty;const dueNow=state.pay==="deposit"?Math.round(full*DEPOSIT_PCT):full;return{full,dueNow,balance:full-dueNow};}
+
+  function renderSummary(){
+    const s=document.getElementById("summary"), fs=findSlot();
+    if(!fs){s.innerHTML='<div class="sumrow empty">No window selected yet</div>';document.getElementById("totals").style.display="none";document.getElementById("pay").disabled=true;return;}
+    const {d,s:slot}=fs;
+    s.innerHTML=`
+      <div class="sumrow"><span class="k">Day</span><span class="v">${d.dow} ${d.date}</span></div>
+      <div class="sumrow"><span class="k">Jump window</span><span class="v">${slot.label}</span></div>
+      <div class="sumrow"><span class="k">Arrive by</span><span class="v">${slot.arriveBy}</span></div>
+      <div class="sumrow"><span class="k">Jumpers</span><span class="v">${state.qty}</span></div>`;
+    const {full,dueNow,balance}=amounts();
+    document.getElementById("totals").style.display="block";
+    document.getElementById("ppLabel").textContent=`Tandem jump × ${state.qty}`;
+    document.getElementById("ppValue").textContent=money(full);
+    document.getElementById("fullAmt").textContent=money(full);
+    document.getElementById("depAmt").textContent=money(Math.round(full*DEPOSIT_PCT));
+    document.getElementById("dueNow").textContent=money(dueNow);
+    const bl=document.getElementById("balanceLine");
+    if(balance>0){bl.style.display="flex";document.getElementById("balAmt").textContent=money(balance);}else bl.style.display="none";
+    document.getElementById("pay").disabled=false;
+  }
+
+  function flashErr(m){const e=document.getElementById("err");e.textContent=m;e.classList.add("show");clearTimeout(flashErr._t);flashErr._t=setTimeout(()=>e.classList.remove("show"),6000);e.scrollIntoView({behavior:"smooth",block:"nearest"});}
+
+  function validate(){
+    const fs=findSlot(); if(!fs)return"Please choose a jump window.";
+    for(let i=0;i<state.qty;i++){const p=state.pax[i]||{},n=i+1;
+      if(!p.name||!p.name.trim())return`Enter the name for jumper ${n}.`;
+      if(!p.age)return`Select the age for jumper ${n}.`;
+      if(p.age==="under")return`Jumper ${n} must be at least 14 years old to do a tandem jump.`;
+      if(!p.weight)return`Confirm jumper ${n} weighs 100 kg or less.`;
+      if(p.age==="minor"){if(!p.gname||!p.gname.trim())return`Enter the guardian name for jumper ${n} (minor).`;if(!p.gconsent)return`Guardian consent is required for jumper ${n} (minor).`;}
+    }
+    if(!document.getElementById("ackTerms").checked)return"Please tick the confirmation box under the jumper details.";
+    const nm=document.getElementById("bkName").value.trim(),em=document.getElementById("bkEmail").value.trim(),ph=document.getElementById("bkPhone").value.trim();
+    if(!nm)return"Enter the booking contact name.";
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em))return"Enter a valid contact email address.";
+    if(ph.replace(/\D/g,"").length<9)return"Enter a valid contact mobile number.";
+    return null;
+  }
+
+  function payload(){
+    return {
+      slotId:state.slotId, jumpers:state.qty, payType:state.pay,
+      pax:state.pax.slice(0,state.qty),
+      contact:{name:document.getElementById("bkName").value.trim(),email:document.getElementById("bkEmail").value.trim(),phone:document.getElementById("bkPhone").value.trim()}
+    };
+  }
+
+  function showModal({title,icon,detail,ref,spinning}){
+    document.getElementById("modalTitle").textContent=title;
+    document.getElementById("modalIcon").innerHTML = spinning?'<div class="spin"></div>':icon;
+    document.getElementById("modalDetail").textContent=detail||"";
+    const rw=document.getElementById("refWrap");
+    if(ref){rw.style.display="block";document.getElementById("refCode").textContent=ref;}else rw.style.display="none";
+    document.getElementById("overlay").classList.add("show");
+  }
+  document.getElementById("closeModal").onclick=()=>document.getElementById("overlay").classList.remove("show");
+
+  document.getElementById("pay").onclick=async()=>{
+    const problem=validate(); if(problem){flashErr(problem);return;}
+    const {dueNow,balance}=amounts();
+
+    if(!LIVE){
+      // PREVIEW: no real payment. Demonstrate the flow + local seat hold.
+      const fs=findSlot(); fs.s.booked+=state.qty;
+      showModal({title:"Preview only",icon:"⚑",ref:"GFI-PREVIEW",
+        detail:`This is preview mode — no payment was taken. Connect the backend (API_BASE) to create a live Yoco checkout for ${money(dueNow)}.`});
+      renderDays();renderSlots();syncSteps();renderSummary();
+      return;
+    }
+
+    // LIVE: ask backend to hold seats + create Yoco checkout, then redirect.
+    const btn=document.getElementById("pay"); btn.disabled=true;
+    showModal({title:"Setting up payment",spinning:true,detail:"Holding your seat and opening secure Yoco checkout…"});
+    try{
+      const r=await fetch(API_BASE+"/create-checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload())});
+      const data=await r.json();
+      if(r.status===409){document.getElementById("overlay").classList.remove("show");await refreshAvailability();flashErr(data.error||"That window just sold out — please pick another.");btn.disabled=false;return;}
+      if(!r.ok||!data.redirectUrl)throw new Error(data.error||"Could not start payment.");
+      showModal({title:"Redirecting to Yoco",spinning:true,ref:data.ref,detail:`Taking you to secure payment for ${money(dueNow)}${balance>0?" (balance "+money(balance)+" before the event)":""}…`});
+      window.location.href=data.redirectUrl;
+    }catch(e){
+      document.getElementById("overlay").classList.remove("show");
+      flashErr(e.message||"Something went wrong starting your payment. Please try again.");
+      btn.disabled=false;
+    }
+  };
+
+  // init
+  renderDays();renderSlots();renderPax();syncSteps();renderSummary();
+  if(LIVE){refreshAvailability();setInterval(refreshAvailability,POLL_MS);}
+</script>
+</body>
+</html>

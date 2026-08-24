@@ -1,0 +1,10 @@
+{
+  "name": "gariep-skydive-booking",
+  "version": "1.0.0",
+  "description": "Tandem skydive booking backend for the Gariep Fly-In 2026 (Yoco + Supabase).",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  }
+}
