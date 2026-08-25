@@ -79,13 +79,20 @@ export default async function handler(req, res) {
           }
         })
       });
-      checkout = await yocoRes.json();
-      if (!yocoRes.ok || !(checkout.redirectUrl || checkout.redirect_url)) {
-        throw new Error(checkout?.message || 'Yoco checkout failed');
+      const rawText = await yocoRes.text();
+      let parsed = {};
+      try { parsed = JSON.parse(rawText); } catch (_) {}
+      if (!yocoRes.ok || !(parsed.redirectUrl || parsed.redirect_url)) {
+        // Surface Yoco's actual reply into the Vercel logs so we can see the reason.
+        console.error('YOCO CHECKOUT FAILED — HTTP', yocoRes.status, '— body:', rawText);
+        await supabase.rpc('release_seats', { p_slot: slotId, p_qty: jumpers });
+        return res.status(502).json({ error: 'Payment provider unavailable. Please try again.', yocoStatus: yocoRes.status, yocoBody: rawText });
       }
+      checkout = parsed;
     } catch (e) {
+      console.error('YOCO CHECKOUT THREW:', e && e.message);
       await supabase.rpc('release_seats', { p_slot: slotId, p_qty: jumpers }); // give the seat back
-      return res.status(502).json({ error: 'Payment provider unavailable. Please try again.' });
+      return res.status(502).json({ error: 'Payment provider unavailable. Please try again.', detail: String(e && e.message) });
     }
 
     // --- record the pending booking ---
