@@ -55,7 +55,8 @@ export default async function handler(req, res) {
     if (held !== true) return res.status(409).json({ error: 'That window just sold out. Please choose another.' });
 
     const ref = makeRef(slotId.split('-')[0]);
-    const base = process.env.PUBLIC_SITE_URL;
+    // Use SITE_URL if set, otherwise derive the address from the request itself.
+    const base = (process.env.SITE_URL || `https://${req.headers['x-forwarded-host'] || req.headers.host}`).replace(/\/$/, '');
 
     // --- create the Yoco checkout ---
     let checkout;
