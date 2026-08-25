@@ -27,13 +27,27 @@
   .brand .sub{font-size:11px;letter-spacing:.22em;color:rgba(255,255,255,.62);text-transform:uppercase}
   .freq{font-family:var(--display);font-size:13px;letter-spacing:.12em;color:rgba(255,255,255,.7);text-transform:uppercase}
   .freq b{color:var(--gold);font-weight:600}
-  
-  .hero{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 80% -10%,rgba(194,154,46,.22),transparent 55%),linear-gradient(160deg,var(--navy) 0%,#0b234d 55%,#0a1c3d 100%);color:#fff;padding:54px 22px 60px}
-  .hero .wrap{max-width:1100px;margin:0 auto;position:relative;z-index:2}
+
+  .hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:66px 22px 72px}
+  .hero .photo{position:absolute;inset:0;z-index:0;background:url('hero.jpg') center 30%/cover no-repeat}
+  .hero .wash{position:absolute;inset:0;z-index:1;background:
+    linear-gradient(102deg,rgba(8,25,56,.93) 0%,rgba(9,28,62,.80) 38%,rgba(11,32,70,.44) 70%,rgba(11,32,70,.22) 100%),
+    linear-gradient(to top,rgba(8,25,56,.6),transparent 42%),
+    radial-gradient(120% 90% at 88% 6%,rgba(194,154,46,.16),transparent 52%)}
+  .hero .frame{position:absolute;inset:14px;z-index:2;border:1px solid rgba(194,154,46,.34);border-radius:10px;pointer-events:none}
+  .hero .tick{position:absolute;width:15px;height:15px;border:2px solid var(--gold)}
+  .hero .tick.tl{top:-1px;left:-1px;border-right:0;border-bottom:0}
+  .hero .tick.tr{top:-1px;right:-1px;border-left:0;border-bottom:0}
+  .hero .tick.bl{bottom:-1px;left:-1px;border-right:0;border-top:0}
+  .hero .tick.br{bottom:-1px;right:-1px;border-left:0;border-top:0}
+  .hero .compass{position:absolute;top:32px;right:38px;width:96px;height:96px;z-index:2;opacity:.5;pointer-events:none}
+  .hero .routefx{position:absolute;right:0;top:0;height:100%;width:60%;z-index:2;opacity:.5;pointer-events:none}
+  @media(max-width:780px){.hero .compass,.hero .routefx{display:none}}
+  .hero .wrap{max-width:1100px;margin:0 auto;position:relative;z-index:3}
   .eyebrow{font-family:var(--display);text-transform:uppercase;letter-spacing:.32em;font-size:13px;color:var(--gold-bright);font-weight:600;margin-bottom:14px}
-  .hero h1{font-size:clamp(40px,7vw,74px);font-weight:700;text-transform:uppercase}
+  .hero h1{font-size:clamp(40px,7vw,74px);font-weight:700;text-transform:uppercase;text-shadow:0 3px 26px rgba(0,0,0,.5)}
   .hero h1 .thin{color:var(--gold);display:block;font-weight:500}
-  .hero p.lead{max-width:52ch;margin-top:16px;font-size:17px;color:rgba(255,255,255,.82)}
+  .hero p.lead{max-width:52ch;margin-top:16px;font-size:17px;color:rgba(255,255,255,.9);text-shadow:0 1px 14px rgba(0,0,0,.55)}
   .facts{display:flex;flex-wrap:wrap;gap:26px;margin-top:30px}
   .fact{border-left:2px solid var(--gold);padding-left:14px}
   .fact .k{font-family:var(--display);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6)}
@@ -168,6 +182,39 @@
   .modal .close:hover{background:var(--navy-90)}
   .spin{width:34px;height:34px;border:3px solid rgba(255,255,255,.3);border-top-color:var(--gold);border-radius:50%;margin:0 auto 10px;animation:sp 1s linear infinite}
   @keyframes sp{to{transform:rotate(360deg)}}
+
+  /* ---------- Printable confirmation ---------- */
+  .conf-screen{display:none;position:fixed;inset:0;background:var(--paper);z-index:60;overflow:auto;padding:24px}
+  .conf-screen.show{display:block}
+  .ticket{max-width:640px;margin:20px auto;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .ticket .thead{background:var(--navy);color:#fff;border-bottom:3px solid var(--gold);padding:22px 26px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+  .ticket .thead .bw{width:44px;height:44px;border-radius:50%;border:2px solid var(--gold);display:grid;place-items:center;font-family:var(--display);font-weight:700;color:var(--gold);font-size:20px;flex:0 0 auto}
+  .ticket .thead h2{font-family:var(--display);font-size:26px;text-transform:uppercase;letter-spacing:.03em;line-height:1}
+  .ticket .thead .ev{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-bright);margin-top:4px}
+  .ticket .paidtag{font-family:var(--display);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#fff;background:var(--ok);padding:5px 12px;border-radius:20px;white-space:nowrap}
+  .ticket .tbody{padding:24px 26px}
+  .ticket .refrow{background:var(--paper);border:1px dashed var(--gold);border-radius:10px;padding:12px 16px;text-align:center;margin-bottom:20px}
+  .ticket .refrow .l{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .ticket .refrow .r{font-family:var(--display);font-size:28px;font-weight:700;color:var(--navy);letter-spacing:.1em}
+  .ticket .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px}
+  .ticket .f .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .ticket .f .v{font-family:var(--display);font-size:22px;font-weight:600;color:var(--navy);line-height:1.1}
+  .ticket .full{grid-column:1 / -1}
+  .ticket .rule{height:1px;background:var(--line);margin:20px 0}
+  .ticket .remind{font-size:13px;color:var(--ink);line-height:1.6}
+  .ticket .remind b{color:var(--navy)}
+  .ticket .foot{background:#fafafa;border-top:1px solid var(--line);padding:14px 26px;font-size:11px;color:var(--muted);text-align:center}
+  .conf-actions{max-width:640px;margin:0 auto 30px;display:flex;gap:12px;justify-content:center}
+  .conf-actions button{cursor:pointer;font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;letter-spacing:.04em;padding:13px 22px;border-radius:10px;border:none}
+  .conf-actions .print{background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:var(--navy)}
+  .conf-actions .back{background:#fff;border:1.5px solid var(--line);color:var(--navy)}
+
+  @media print{
+    body > *{display:none !important;}
+    .conf-screen{display:block !important;position:static;padding:0;background:#fff}
+    .conf-screen .conf-actions{display:none !important;}
+    .ticket{box-shadow:none;border:1px solid #ccc;margin:0;max-width:100%}
+  }
 </style>
 </head>
 <body>
@@ -181,7 +228,25 @@
 </div>
 
 <section class="hero">
-  <div class="lines"></div>
+  <div class="photo"></div>
+  <div class="wash"></div>
+  <div class="frame"><span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span></div>
+  <svg class="compass" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="50" cy="50" r="47" fill="none" stroke="#C29A2E" stroke-width="1" opacity=".75"/>
+    <circle cx="50" cy="50" r="33" fill="none" stroke="#C29A2E" stroke-width="1" opacity=".4"/>
+    <g fill="#E4C56A"><polygon points="50,4 55,50 45,50"/><polygon points="50,96 55,50 45,50"/><polygon points="96,50 50,45 50,55"/><polygon points="4,50 50,45 50,55"/></g>
+    <g fill="#C29A2E" opacity=".85"><polygon points="73,27 54,46 46,54"/><polygon points="27,73 46,54 54,46"/><polygon points="73,73 54,54 46,46"/><polygon points="27,27 46,46 54,54"/></g>
+    <circle cx="50" cy="50" r="3.4" fill="#E4C56A"/>
+    <text x="50" y="15" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="11" font-weight="700" fill="#E4C56A">N</text>
+  </svg>
+  <svg class="routefx" viewBox="0 0 600 480" preserveAspectRatio="xMaxYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M-30,470 Q210,410 330,300 T470,150" fill="none" stroke="#C29A2E" stroke-width="2.4" stroke-dasharray="9 9" stroke-linecap="round"/>
+    <circle cx="470" cy="150" r="46" fill="#C29A2E" opacity=".12"/>
+    <circle cx="470" cy="150" r="30" fill="none" stroke="#E4C56A" stroke-width="2"/>
+    <circle cx="470" cy="150" r="22" fill="#0A1F44"/>
+    <circle cx="470" cy="150" r="22" fill="none" stroke="#C29A2E" stroke-width="1.5"/>
+    <polygon points="470,131 476,144 489,150 476,156 470,169 464,156 451,150 464,144" fill="#E4C56A"/>
+  </svg>
   <div class="wrap">
     <div class="eyebrow">Gariep Fly-In 2026 · 24–27 September</div>
     <h1>Tandem Skydive<span class="thin">over the Gariep Dam</span></h1>
@@ -293,7 +358,7 @@
   <div class="row">
     <div><b>Big Water Aero (Pty) Ltd</b> · Reg No. 2024/080574/07</div>
     <div>Big Water Airport (FAGA), R701 Bethulie Road, Gariep Dam, Free State 9922</div>
-    <div><b>Bookings:</b> info@bigwater.aero</div>
+    <div><b>Bookings:</b> manager@bigwater.aero</div>
   </div>
 </footer>
 <div class="footnote">Gariep Fly-In 2026 · Tandem skydiving is a third-party operation. By booking you agree to the operator's indemnity and safety requirements completed on the day.</div>
@@ -309,18 +374,54 @@
   </div>
 </div>
 
+<!-- Printable confirmation (shown after a successful payment) -->
+<div class="conf-screen" id="confScreen">
+  <div class="ticket" id="ticket">
+    <div class="thead">
+      <div style="display:flex;gap:14px;align-items:center">
+        <div class="bw">BW</div>
+        <div><h2>Jump Confirmed</h2><div class="ev">Gariep Fly-In 2026 · Tandem Skydive</div></div>
+      </div>
+      <div class="paidtag" id="confPaidTag">Paid</div>
+    </div>
+    <div class="tbody">
+      <div class="refrow"><div class="l">Booking reference</div><div class="r" id="confRef">—</div></div>
+      <div class="grid">
+        <div class="f"><div class="k">Day</div><div class="v" id="confDay">—</div></div>
+        <div class="f"><div class="k">Jump window</div><div class="v" id="confWindow">—</div></div>
+        <div class="f"><div class="k">Arrive by</div><div class="v" id="confArrive">—</div></div>
+        <div class="f"><div class="k">Jumpers</div><div class="v" id="confJumpers">—</div></div>
+        <div class="f full"><div class="k">Booked by</div><div class="v" id="confName">—</div></div>
+        <div class="f"><div class="k">Paid now</div><div class="v" id="confPaid">—</div></div>
+        <div class="f"><div class="k">Balance before event</div><div class="v" id="confBalance">—</div></div>
+      </div>
+      <div class="rule"></div>
+      <div class="remind">
+        <b>Please arrive at least 40 minutes before your window</b> for check-in, the indemnity form, your briefing and kit-up.<br>
+        Bring ID. Jumpers aged 14–17 must have a parent/guardian sign consent on the day. Max weight 100 kg.<br>
+        Payments are non-refundable. Skydiving is weather-dependent — if grounded on the day, the operator will arrange an alternative window.
+      </div>
+    </div>
+    <div class="foot">Big Water Aero (Pty) Ltd · Reg No. 2024/080574/07 · Big Water Airport (FAGA), Gariep Dam · manager@bigwater.aero · 072 837 3101</div>
+  </div>
+  <div class="conf-actions">
+    <button class="print" onclick="window.print()">Print / Save as PDF</button>
+    <button class="back" onclick="location.href=location.pathname">Book another</button>
+  </div>
+</div>
+
 <script>
 /* ============================================================================
    GARIEP FLY-IN 2026 — TANDEM SKYDIVE BOOKING (frontend)
    ----------------------------------------------------------------------------
    TO GO LIVE: set API_BASE to your deployed backend URL, e.g.
-       const API_BASE = "https://gariep-skydive.vercel.app/api";
+       const API_BASE = "https://gariep-skydiving.vercel.app/api";
    When API_BASE is empty the page runs in PREVIEW mode: it shows the schedule
    and validates everything but does NOT take payment or track shared seats.
    Live mode fetches availability from the backend, holds seats server-side,
    and redirects to a real Yoco checkout. See README.md.
    ---------------------------------------------------------------------------- */
-  const API_BASE = "https://gariep-skydiving.vercel.app/api";            // <-- paste your backend /api URL to go live
+  const API_BASE = "https://gariep-skydiving.vercel.app/api";   // live backend
   const ARRIVAL_LEAD_MIN = 40;
   const PRICE = 4890;             // R per tandem jump (display only; server is source of truth)
   const DEPOSIT_PCT = 0.50;
@@ -550,9 +651,53 @@
     }
   };
 
+  // Fill and show the printable confirmation ticket.
+  function showConfirmation(d){
+    document.getElementById('confRef').textContent=d.ref;
+    document.getElementById('confDay').textContent=d.day;
+    document.getElementById('confWindow').textContent=d.window;
+    document.getElementById('confArrive').textContent=d.arriveBy;
+    document.getElementById('confJumpers').textContent=d.jumpers;
+    document.getElementById('confName').textContent=(d.contact&&d.contact.name)||'';
+    document.getElementById('confPaid').textContent=money(d.amountPaid);
+    document.getElementById('confBalance').textContent=d.balance>0?money(d.balance):'None — paid in full';
+    document.getElementById('confPaidTag').textContent=d.balance>0?'Deposit paid':'Paid in full';
+    document.getElementById('confScreen').classList.add('show');
+  }
+
+  // Handle the return from Yoco.
+  async function handleReturn(){
+    const p=new URLSearchParams(location.search);
+    const status=p.get('status'), ref=p.get('ref');
+    if(!LIVE || !ref) return;
+
+    if(status==='failed'||status==='cancelled'){
+      try{ await fetch(API_BASE+'/release-booking',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ref})}); }catch(e){}
+      await refreshAvailability();
+      flashErr('Your previous payment didn\u2019t go through, so that seat has been released. You\u2019re welcome to try again.');
+      history.replaceState({},'',location.pathname);
+      return;
+    }
+
+    if(status==='success'){
+      // The webhook marks the booking 'paid'; it may land a moment after the redirect,
+      // so poll a few times before giving up.
+      for(let i=0;i<6;i++){
+        try{
+          const r=await fetch(API_BASE+'/booking?ref='+encodeURIComponent(ref),{cache:'no-store'});
+          if(r.status===200){ const d=await r.json(); showConfirmation(d); return; }
+        }catch(e){}
+        await new Promise(res=>setTimeout(res,1500));
+      }
+      // Payment likely fine but confirmation slow — reassure rather than alarm.
+      showModal({title:'Payment received',icon:'\u2713',ref,detail:'Thanks! Your booking reference is above. If your confirmation doesn\u2019t appear, email manager@bigwater.aero with this reference and we\u2019ll confirm your seat.'});
+      history.replaceState({},'',location.pathname);
+    }
+  }
+
   // init
   renderDays();renderSlots();renderPax();syncSteps();renderSummary();
-  if(LIVE){refreshAvailability();setInterval(refreshAvailability,POLL_MS);}
+  if(LIVE){refreshAvailability();setInterval(refreshAvailability,POLL_MS);handleReturn();}
 </script>
 </body>
 </html>
