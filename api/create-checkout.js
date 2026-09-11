@@ -13,7 +13,7 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
-const PRICE_CENTS  = 489000;   // R4 890 per tandem jump, in cents
+const PRICE_CENTS  = 449000;   // R4 490 per tandem jump, in cents
 const DEPOSIT_PCT  = 0.50;
 const HOLD_MINUTES = 2;
 const YOCO_CHECKOUTS_URL = 'https://payments.yoco.com/api/checkouts';
